@@ -8,7 +8,7 @@ int main()
 void fun(int x, int y)
 {
     printf("x=%d\t y= %d", x, y);
-}*/
+}
 
 #include <stdio.h>
 #include <string.h>
@@ -84,4 +84,45 @@ void name(int v)
     }
 
     return;
+}
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int main()
+{
+    char S[200], Wi[200];
+    int N, z, count = 0, i, j = 0, k, siz;
+    scanf("%[^\n]%*c", S);
+    siz = strlen(S);
+    scanf("%d", &N);
+
+    for (i = 0; i < N; i++)
+    {
+        scanf("\n");
+        scanf("%[^\n]%*c", Wi);
+        z = strlen(Wi);
+        for (j = 0; j < z; j++)
+        {
+            for (k = 0; k < siz; k++)
+            {
+                if (Wi[j] == S[k])
+                {
+                    count = 1;
+                    break;
+                }
+                else
+                    count = 0;
+            }
+            if (count == 0)
+                break;
+        }
+        if (count == 1)
+            printf("Yes\n");
+        else
+            printf("No\n");
+    }
+    return 0;
 }

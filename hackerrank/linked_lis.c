@@ -1,11 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 struct node *add_data(struct node *);
-struct node
+struct SinglyLinkedListNode
 {
     int data;
-    struct node *link;
+    SinglyLinkedListNode *next;
 };
+SinglyLinkedListNode *insertNodeAtTail(SinglyLinkedListNode *head, int data)
+{
+
+    SinglyLinkedListNode *ptr = head;
+
+    while (1)
+    {
+        if (ptr->next == NULL)
+            break;
+        ptr = (ptr->next);
+    }
+    ptr->next = (SinglyLinkedListNode *)malloc(sizeof(SinglyLinkedListNode));
+    ptr = (ptr->next);
+    ptr->data = data;
+    ptr->next = NULL;
+    return head;
+}
 int main()
 {
     int i, n;
@@ -21,11 +38,17 @@ int main()
     {
         ptr = add_data(ptr);
     }
+
+    printf("enter the number that you want to add at the end");
+    int num;
+    scanf("%d", &num);
+    head = insertNodeAtTail(head, num);
     while (head != NULL)
     {
         printf("%d ", head->data);
         head = head->link;
     }
+    return 0;
 }
 struct node *add_data(struct node *head)
 {
