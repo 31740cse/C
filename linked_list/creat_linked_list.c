@@ -5,34 +5,33 @@ struct node
     int data;
     struct node *next;
 };
-struct node *add_node(struct node *head)
+void add_node(struct node **head)
 {
-    struct node *ptr = head;
+    struct node **ptr = &(*head);
     int data;
     printf("enter the number which you want to add ");
     scanf("%d", &data);
-    if (head == NULL)
-        ptr = head = (struct node *)malloc(sizeof(struct node));
+    if (*head == NULL)
+        *ptr = *head = (struct node *)malloc(sizeof(struct node));
     else
     {
-        while (ptr->next != NULL)
-            ptr = ptr->next;
-        ptr = ptr->next = (struct node *)malloc(sizeof(struct node));
+        while ((*ptr)->next != NULL)
+            *ptr = (*ptr)->next;
+        *ptr = (*ptr)->next = (struct node *)malloc(sizeof(struct node));
     }
-    ptr->next = NULL;
-    ptr->data = data;
-    return head;
+    (*ptr)->next = NULL;
+    (*ptr)->data = data;
+    return;
 }
 int main()
 {
     struct node *head = NULL;
-    struct node *ptr = head;
     int n;
     printf("enter the size of the list ");
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
-        head = add_node(head);
-    ptr = head;
+        add_node(&head);
+    struct node *ptr = head;
     while (ptr != NULL)
     {
         printf("%d ", ptr->data);
